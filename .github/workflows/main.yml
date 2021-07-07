@@ -8,9 +8,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name : GITHUB CONTEXT
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: echo "GITHUB_CONTEXT"
 
       - name: get commit message
         run: |
