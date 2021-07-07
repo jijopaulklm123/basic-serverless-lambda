@@ -2,6 +2,7 @@ name: Deploy Lambda
 
 on:
   push:
+  pull_request:
 jobs:
   deploy:
     name: deploy
