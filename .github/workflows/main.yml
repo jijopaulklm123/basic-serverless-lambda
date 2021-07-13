@@ -1,33 +1,23 @@
-name: Deploy Lambda
-
+name: Staging Auto-PR
 on:
   push:
-  pull_request:
+    branches: ['main']
+
 jobs:
-  deploy:
-    name: deploy
+  pull-request:
+    name: Open PR to main
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
-
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: echo "${{ github.event.commits[0].message }}"
-    - run: echo "${{ github.event.head_commit.message }}"
-    - name: get commit message
-    - run: |
-        echo commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
-    - name: show commit message
-    - run : echo $commitmsg
-
-    - name: step1
-      if: contains( env.commitmsg , 'try' )
-      run: echo hello
-
-
+        destination_branch: "main"
+        pr_title: "Pulling ${{ github.ref }} into main"
+        pr_body: "👑 *An automated PR*"
+        pr_reviewer: "kingdonb"
+        pr_draft: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
