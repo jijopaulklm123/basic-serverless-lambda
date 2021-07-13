@@ -1,7 +1,7 @@
 name: Staging Auto-PR
 on:
   push:
-    branches: ['main']
+    branches: ['dev']
 
 jobs:
   pull-request:
