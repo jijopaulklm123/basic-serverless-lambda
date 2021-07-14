@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: checkout
-    - run: "echo ${{ GITHUB_HEAD_REF }}"
+    - run: "echo ${{ github.head_ref }}"
