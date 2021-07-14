@@ -1,0 +1,11 @@
+name: Staging Auto-PR
+on: pull_request
+
+jobs:
+  pull-request:
+    name: Open PR to main
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: checkout
+    - run: "echo ${{ github.head_ref }}"
