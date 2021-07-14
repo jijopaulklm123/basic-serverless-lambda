@@ -22,8 +22,8 @@ jobs:
     - uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
       name: Notify  
       with:
-        webhook: 'e4992cfd.alamy.com@emea.teams.ms'
-        message: 'W00t it werked!'        
+        webhook: 'https://alamy.webhook.office.com/webhookb2/b88610d1-766e-4b67-b4bd-4aff7a2be34e@a34ab451-2e45-46ab-812b-05f284201608/IncomingWebhook/93543f055c7548d49b07a4a4f8080299/f6effabe-7f9b-41fe-bbbf-cd298892bf34'
+        message: 'Got My Message!!!!!!!!!!!'        
 
 
 
