@@ -10,7 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       name: checkout
-    - run: "echo ${{ GITHUB_HEAD_REF }}"
 
     - uses: repo-sync/pull-request@v2
       name: pull-request
