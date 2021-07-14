@@ -19,6 +19,11 @@ jobs:
         pr_body: "👑 *An automated PR*"
         pr_reviewer: "jijopaulklm123"
         github_token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
+      name: Notify  
+      with:
+        webhook: 'e4992cfd.alamy.com@emea.teams.ms'
+        message: 'W00t it werked!'        
 
 
 
