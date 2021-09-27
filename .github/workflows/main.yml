@@ -1,24 +1,28 @@
-name: Staging Auto-PR
+name: Storybook
+
 on:
   push:
-    branches: ['dev']
-
 jobs:
-  pull-request:
-    name: Open PR to main
+  build:
+    name: Publish-Storybook
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      name: checkout
 
-    - uses: repo-sync/pull-request@v2
-      name: pull-request
-      with:
-        destination_branch: "main"
-        pr_title: "Pulling ${{ github.ref }} into main"
-        pr_body: "👑 *An automated PR*"
-        pr_reviewer: "jijopaulklm123"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: test package
+        run: |
+          npm install
+          npx sls package --stage development   
+      - run: npm run publish:storybook
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: eu-west-1
+      - run: aws s3 sync ./serverless/ s3://amytest123/ --delete
 
 
 
